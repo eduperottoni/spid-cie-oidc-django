@@ -20,7 +20,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 BASEDIR="/opt/spid-cie-oidc-django"
 ENVDIR="$BASEDIR/env"
-APPNAME="examples-docker/federation_authority"
+APPNAME="examples-docker/rnp_ta"
 APPDIR="$BASEDIR/$APPNAME"
 #DEBUG=""
 PID_PATH="/var/log/uwsgi"

@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  trust-anchor.org:
+  rnp-ta.org:
     image: ghcr.io/italia/spid-cie-oidc-django:latest
     # build:
       # context: .
@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./examples-docker/federation_authority:/django-project
+      - ./examples-docker/rnp_ta:/django-project
     networks:
       - oidcfed
     command: |
@@ -32,7 +32,7 @@ services:
     networks:
       - oidcfed
     depends_on:
-      - trust-anchor.org
+      - rnp-ta.org
     command: |
         bash -c "cd /django-project/ &&
         python3 manage.py migrate &&
@@ -53,14 +53,14 @@ services:
     networks:
       - oidcfed
     depends_on:
-      - trust-anchor.org
+      - rnp-ta.org
     command: |
         bash -c "cd /django-project/ &&
         python3 manage.py migrate &&
         python3 manage.py loaddata dumps/example.json &&
         python3 manage.py runserver 0.0.0.0:8001"
 
-  wallet.trust-anchor.org:
+  ufrgs-ta.org:
     image: ghcr.io/italia/spid-cie-oidc-django:latest
     # build:
       # context: .
@@ -68,7 +68,7 @@ services:
     ports:
       - "8005:8005"
     volumes:
-      - ./examples-docker/wallet_trust_anchor:/django-project
+      - ./examples-docker/ufrgs_ta:/django-project
     networks:
       - oidcfed
     command: |
@@ -77,5 +77,25 @@ services:
         python3 manage.py loaddata dumps/ta-ec.json &&
         python3 manage.py runserver 0.0.0.0:8005"
 
+  ufrgs-sp.org:
+    image: ghcr.io/italia/spid-cie-oidc-django:latest
+    # build:
+      # context: .
+      # dockerfile: ./Dockerfile
+    expose:
+      - 8006
+    ports:
+      - "8006:8006"
+    volumes:
+      - ./examples-docker/ufrgs_sp:/django-project
+    networks:
+      - oidcfed
+    depends_on:
+      - ufrgs-ta.org
+    command: |
+        bash -c "cd /django-project/ &&
+        python3 manage.py migrate &&
+        python3 manage.py loaddata dumps/example.json &&
+        python3 manage.py runserver 0.0.0.0:8006"
 networks:
   oidcfed:

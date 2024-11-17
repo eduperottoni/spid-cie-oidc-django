@@ -145,7 +145,7 @@ Example
 
 `fetch_openid_providers` build the Trust Chains for each `OIDCFED_IDENTITY_PROVIDERS`. Flag '-f' force trust chian renew even if is still valid.
 ````
-examples/federation_authority/manage.py fetch_openid_providers --start -f
+examples/rnp_ta/manage.py fetch_openid_providers --start -f
 
 ````
 Flag '-f' force trust chian renew.

@@ -54,15 +54,15 @@ jobs:
 
     - name: spid_cie_oidc unit tests
       run: |
-        cp examples/federation_authority/federation_authority/settingslocal.py.example examples/federation_authority/federation_authority/settingslocal.py
+        cp examples/rnp_ta/rnp_ta/settingslocal.py.example examples/rnp_ta/rnp_ta/settingslocal.py
         coverage erase
-        coverage run examples/federation_authority/manage.py test spid_cie_oidc
+        coverage run examples/rnp_ta/manage.py test spid_cie_oidc
         coverage report -m --skip-covered
 
     - name: spid_cie_oidc example data imports
       run: |
-        cp examples/federation_authority/federation_authority/settingslocal.py.example examples/federation_authority/federation_authority/settingslocal.py
-        cd examples/federation_authority/
+        cp examples/rnp_ta/rnp_ta/settingslocal.py.example examples/rnp_ta/rnp_ta/settingslocal.py
+        cd examples/rnp_ta/
         ./manage.py migrate
         ./manage.py loaddata dumps/example.json
 

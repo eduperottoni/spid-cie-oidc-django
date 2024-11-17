@@ -45,7 +45,7 @@ pip install "design-django-theme==v1.4.8"
 
 In `examples/` folder you have three demostrations projects:
 
- - federation_authority
+ - rnp_ta
  - relying_party
  - provider
 

@@ -1,5 +1,5 @@
 """
-WSGI config for example project.
+WSGI config for relying_party project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'federation_authority.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ufrgs_sp.settings')
 
 application = get_wsgi_application()

@@ -17,27 +17,29 @@ ADMIN_PATH = 'admin/'
 APPEND_SLASH = False
 
 # required for onboarding checks and also for all the leafs
-OIDCFED_DEFAULT_TRUST_ANCHOR = "http://127.0.0.1:8000"
+OIDCFED_DEFAULT_TRUST_ANCHOR = "http://127.0.0.1:8005"
 OIDCFED_TRUST_ANCHORS = [OIDCFED_DEFAULT_TRUST_ANCHOR]
-OIDCFED_PROVIDER_PROFILE = "cie"
-#OIDCFED_PROVIDER_MAX_REFRESH = 10 #used in SPID
-OIDCFED_PROVIDER_MAX_CONSENT_TIMEFRAME = 3600 #used in CIE (seconds)
 
 OIDCFED_REQUIRED_TRUST_MARKS = []
 
-#OIDCFED_FEDERATION_TRUST_MARKS_PROFILES = {
-#    "openid_relying_party__public": {},
-#    "openid_relying_party__private": {},
-#}
+# for RP only
+OIDCFED_IDENTITY_PROVIDERS = {
+  "spid": {
+    "http://127.0.0.1:8000/oidc/op" : "http://127.0.0.1:8000",
+  },
+  "cie": {
+    "http://127.0.0.1:8002/oidc/op" : "http://127.0.0.1:8000",
+  }
+}
 
 HTTPC_PARAMS = {
     "connection": {"ssl": True},
     "session": {"timeout": aiohttp.ClientTimeout(total=4)},
 }
 
-LOGIN_REDIRECT_URL = "/oidc/op/landing"
-LOGOUT_REDIRECT_URL = "/oidc/op/landing"
-LOGIN_URL = "/oidc/op/landing"
+LOGIN_REDIRECT_URL = "/oidc/rp/echo_attributes"
+LOGOUT_REDIRECT_URL = "/oidc/rp/landing"
+LOGIN_URL = "/oidc/rp/landing"
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'spid_cie_oidc_accounts.User'
@@ -54,7 +56,7 @@ INSTALLED_APPS = [
     "bootstrap_italia_template",
     'spid_cie_oidc.entity',
     'spid_cie_oidc.authority',
-    'spid_cie_oidc.provider',
+    'spid_cie_oidc.relying_party',
     'djagger'
 ]
 
@@ -139,7 +141,7 @@ LOGGING = {
           "class": "logging.handlers.TimedRotatingFileHandler",
           "level": "INFO",
           "formatter": "default",
-          "filename": f"{BASE_DIR}/logs/provider.log",
+          "filename": f"{BASE_DIR}/logs/ufrgs_sp.log",
           "when": "midnight",
           "backupCount": 96
         }
@@ -147,7 +149,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'mail_admins'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': False,
         },
         'spid_cie_oidc': {

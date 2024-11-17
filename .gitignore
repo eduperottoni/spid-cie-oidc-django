@@ -132,14 +132,14 @@ dmypy.json
 !*/logs/README.md
 */logs/*
 
-examples/federation_authority/logs/
+examples/rnp_ta/logs/
 examples/provider/logs/
 examples/relying_party/logs/
 
-examples/federation_authority/federation_authority/settingslocal.py
+examples/rnp_ta/rnp_ta/settingslocal.py
 examples/relying_party/relying_party/settingslocal.py
 examples/provider/provider/settingslocal.py
-examples/wallet_trust_anchor/wallet_trust_anchor/settingslocal.py
+examples/ufrgs_ta/ufrgs_ta/settingslocal.py
 
 examples-docker/
 docker-compose-externalrp.yml

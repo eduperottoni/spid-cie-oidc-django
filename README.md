@@ -54,7 +54,7 @@ and can be used, inherited, and integrated into other projects.
 A project is a service configuration that integrates one or more applications.
 In this repository we have three example projects:
 
- - federation_authority
+ - rnp_ta
  - relying_party
  - provider
 
@@ -87,7 +87,7 @@ Please do your customizations in each _settingslocal.py_ files and/or in the exa
 Change hostnames from 127.0.0.1 to which one configured in the compose file, in the settingslocal.py files and in the dumps/example.json files.
 In our example we rename:
 
-- http://127.0.0.1:8000 to http://trust-anchor.org:8000/
+- http://127.0.0.1:8000 to http://rnp_ta.org:8000/
 - http://127.0.0.1:8001 to http://relying-party.org:8001/
 - http://127.0.0.1:8002 to http://cie-provider.org:8002/
 
@@ -102,9 +102,9 @@ Run the stack
 sudo docker-compose up
 ````
 
-Configure a proper DNS resolution for trust-anchor.org. In GNU/Linux we can configure it in `/etc/hosts`:
+Configure a proper DNS resolution for rnp_ta.org. In GNU/Linux we can configure it in `/etc/hosts`:
 ````
-127.0.0.1   localhost  trust-anchor.org relying-party.org cie-provider.org wallet.trust-anchor.org
+127.0.0.1   localhost  rnp_ta.org relying-party.org cie-provider.org ufrgs-ta.org
 ````
 
 Point your web browser to `http://relying-party.org:8001/oidc/rp/landing` and do your first oidc authentication.

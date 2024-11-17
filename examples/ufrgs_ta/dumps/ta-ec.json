@@ -1,5 +1,25 @@
 [
   {
+    "model": "spid_cie_oidc_accounts.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$CmkauYnR0tV0uXPlxcDXKr$OmpasMWm+T4oUHAklupXMTiLGWyUEfbF5WPInKCBf0Q=",
+      "last_login": "2022-03-31T13:41:41.687Z",
+      "is_superuser": true,
+      "username": "admin",
+      "is_staff": true,
+      "date_joined": "2022-03-19T17:17:32.817Z",
+      "first_name": null,
+      "last_name": null,
+      "is_active": true,
+      "email": "",
+      "origin": null,
+      "attributes": {},
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
     "model": "spid_cie_oidc_entity.federationentityconfiguration",
     "pk": 1,
     "fields": {
@@ -64,6 +84,25 @@
         "d": "DrmwTsOqsj5TAgXYttoNqPgIRAWu_oicuAxRZkAJG8UxAlN72tD5Wqp27PLvkE2MFbNCnbqixjnFEJRN9_71lHIXxSDOdEG472-_OuUDei6UsZQE_w7yKSlOAH7Gx49yGhyBntOgjst6hB9vNuPP4rYQoh9uGzTKwreCX76U6on-j-8pbHV0qUe1I_e6odzP1hdTDQknbsdq6wkm8uf9y3-o8gqYPh8hBsBu8txlkMDzrp-Ropbd724J0MTFvXB5vLoUKKQ_XhHG8Rm_KcQLZ3ZudDoIDvjlPZTovECmZPzkV28c7BKVoGxa84br7gdyfEUFoN3LYIXhfCrrpzanmQ",
         "p": "2qArHMZqenDNAQL4Y-KX-P-zIyXteZKk0MZiAdZ0wKnBGnMcVw6qr0wglrTAFUdUhEkfTMQ5_iCvdzWFhEZ3WcJQThHLmij-Di3u45cvuSp3OtUwJx3ySRmUDA4zQIWzaQ4HrbU_POG8pJVzYo9ovFQXZ2LwU7d0vMtUyeg-tos",
         "q": "_SqJMC-i-QfVhdjmhHRSracia9e2WaT7Bx18lq66-tC48gbQolMII-kCmdWTgvkZZSKT0bSzgHM5vud5Vq_XeRMLXdsJZKP6UwP5Vai12Kbf_uTN574I1Yu5YZkPG7n2veslg1RzT6QjBpRJww_8cCOYx79zPd-NC0lTWjzXo4s"
+      }
+    }
+  },
+  {
+    "model": "spid_cie_oidc_authority.federationentityprofile",
+    "pk": 1,
+    "fields": {
+      "created": "2022-02-10T17:47:04.952Z",
+      "modified": "2022-02-10T17:47:04.952Z",
+      "name": "SPID Public SP",
+      "profile_category": "openid_relying_party",
+      "profile_id": "https://www.spid.gov.it/openid-federation/agreement/sp-public",
+      "trust_mark_template": {
+        "iss": "$.issuer_sub",
+        "sub": "$.sub",
+        "iat": 1579621160,
+        "id": "https://www.spid.gov.it/certification/rp",
+        "mark": "https://www.agid.gov.it/themes/custom/agid/logo.svg",
+        "ref": "https://docs.italia.it/italia/spid/spid-regole-tecniche-oidc/it/stabile/index.html"
       }
     }
   }

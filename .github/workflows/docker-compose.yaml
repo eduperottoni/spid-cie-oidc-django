@@ -31,7 +31,7 @@
         # permission denied -> obvious :-)
         #- name: Adds fake hosts
           #run: | 
-            #echo 127.0.0.1   localhost  trust-anchor.org relying-party.org cie-provider.org wallet.trust-anchor.org > /etc/hosts
+            #echo 127.0.0.1   localhost  rnp_ta.org relying-party.org cie-provider.org ufrgs-ta.org > /etc/hosts
 
         - name: Start containers
           run: docker-compose -f "docker-compose.yml" up -d --build

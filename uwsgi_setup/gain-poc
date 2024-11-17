@@ -8,7 +8,7 @@ server {
     # the port your site will be served on
     # the domain name it will serve for
 
-    server_name trust-anchor.oidc-federation.online;
+    server_name rnp_ta.oidc-federation.online;
     # substitute your machine's IP address or FQDN
 
     access_log /var/log/gain-poc/access.log;
@@ -19,11 +19,11 @@ server {
 }
 
 server {
-    server_name trust-anchor.oidc-federation.online;
+    server_name rnp_ta.oidc-federation.online;
     listen 443 ssl; # managed by Certbot
 
-    ssl_certificate /etc/letsencrypt/live/trust-anchor.oidc-federation.online/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/trust-anchor.oidc-federation.online/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/rnp_ta.oidc-federation.online/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/rnp_ta.oidc-federation.online/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
@@ -46,7 +46,7 @@ server {
 
     # Django static
     location /static  {
-        alias /opt/spid-cie-oidc-django/examples-docker/federation_authority/static;  # your Django project's static files - amend as required
+        alias /opt/spid-cie-oidc-django/examples-docker/rnp_ta/static;  # your Django project's static files - amend as required
         autoindex off;
     }
 
@@ -75,13 +75,13 @@ server {
 }
 
 server {
-    if ($host = trust-anchor.oidc-federation.online) {
+    if ($host = rnp_ta.oidc-federation.online) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
 
     listen      80;
 
-    server_name trust-anchor.oidc-federation.online;
+    server_name rnp_ta.oidc-federation.online;
     return 404; # managed by Certbot
 }

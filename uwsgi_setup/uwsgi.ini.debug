@@ -2,7 +2,7 @@
 project     = spid-cie-oidc-django
 base        = /opt
 
-chdir       = %(base)/%(project)/examples-docker/federation_authority
+chdir       = %(base)/%(project)/examples-docker/rnp_ta
 
 uid         = wert
 gid         = wert
@@ -13,7 +13,7 @@ processes   = 2
 
 virtualenv  = %(base)/%(project)/env
 
-module      = federation_authority.wsgi:application
+module      = rnp_ta.wsgi:application
 vacuum      = True
 
 listen = 1000
@@ -30,5 +30,5 @@ buffer-size=32768
 env         = DJANGO_SETTINGS_MODULE = %(project).settings
 
 pidfile         = /var/log/uwsgi/%(project).pid
-touch-reload    = %(base)/%(project)/federation_authority/settings.py
+touch-reload    = %(base)/%(project)/rnp_ta/settings.py
 honour-stdin = True

@@ -39,7 +39,8 @@ https://www.spid.gov.it/
 
 <!-- Organization name in Header -->
 {% block header_center_org_name %}
-<a href="{% url 'spid_cie_rp_landing'%}">{% trans "OIDC Relying Party" %}</a>
+<!-- <a href="{% url 'spid_cie_rp_landing'%}">{% trans "OIDC Relying Party" %}</a> -->
+<a href="{% url 'spid_cie_rp_landing'%}">{% trans "Sistema de descoberta de serviços" %}</a>
 {% endblock header_center_org_name %}
 
 {% block main_menu %}{% endblock main_menu %}
@@ -81,7 +82,7 @@ https://www.spid.gov.it/
 {% block footer_org_subname %}
     {% trans "OIDC Relying Party" %}
 {% endblock footer_org_subname %}
-
+ 
 {% block extra_scripts %}
 {% block bootstrap_italia_validation %}
 

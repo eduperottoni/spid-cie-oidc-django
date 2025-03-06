@@ -78,16 +78,18 @@ services:
         python3 manage.py runserver 0.0.0.0:8005"
 
   ufrgs-sp.org:
-    image: ghcr.io/italia/spid-cie-oidc-django:latest
-    # build:
-      # context: .
-      # dockerfile: ./Dockerfile
+    # image: ghcr.io/italia/spid-cie-oidc-django:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     expose:
       - 8006
     ports:
       - "8006:8006"
     volumes:
       - ./examples-docker/ufrgs_sp:/django-project
+      # - ./spid_cie_oidc/relying_party:/django-project/spid_cie_oidc/relying_party
+      - ./spid_cie_oidc:/usr/local/lib/python3.10/site-packages/spid_cie_oidc
     networks:
       - oidcfed
     depends_on:

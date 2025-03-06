@@ -24,7 +24,7 @@ class EntityResponse:
     def __init__(self):
         self.status_code = 200
         self.req_counter = 0
-        self.client = Client()
+        self.client =  ()
         self.result = None
 
     def result_as_it_is(self):

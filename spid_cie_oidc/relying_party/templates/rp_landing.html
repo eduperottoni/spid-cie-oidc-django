@@ -9,20 +9,21 @@
 
     <div class="row p-3">
     <h3 class="text-left">
-        {% trans "Welcome" %}
+        {% trans "Olá" %}
     </h3>
 
     <p class="card-title">
         
         {% blocktrans %}
-        SPID is the access system that allows you to use online services with a unique digital identity. 
+        <!-- SPID is the access system that allows you to use online services with a unique digital identity. 
         If you already have a digital identity, login with your Identity Provider. 
-        If you don’t have a digital identity yet, choose an Identity Provider where obtain your SPID Digital Identity.
+        If you don’t have a digital identity yet, choose an Identity Provider where obtain your SPID Digital Identity. -->
+        Bem-vindo ao módulo de descoberta de serviços da CAFe 2.0! Aqui você pode encontrar serviços da federação que você pode acessar autenticando-se pela sua universidade.
         {% endblocktrans %}
 
     </p>
 
-    <p class="card-title"></p>
+    <!-- <p class="card-title"></p>
 
         {% blocktrans %}
         If you have the new Electronic Identity Card (CIE) you can use it to access the services
@@ -31,8 +32,257 @@
         together with the CIE. Visit the official site of CIE id to get the software, documentation and tutorial.
         {% endblocktrans %}
 
-    </p>
+    </p> -->
     </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #ffffff;
+            /* border-radius: 8px; */
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+            border-right: 4px solid #045c20;
+            padding: 20px;
+        }
+        .it-header-center-wrapper {
+            background-color: #045c20;
+        }
+        .sidebar h4 {
+            font-weight: bold;
+        }
+        .service-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .no-results {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+        .it-socials, .it-header-slim-wrapper {
+            display: none !important;
+        }
+        span.d-none, span.badge.square-corners {
+            display: none !important;
+        }
+        div.container.pt-2.p-3 {
+            box-shadow: none !important;
+        }
+        div.card-body{
+            padding: 15px !important;
+        }
+        div.col-12.pl-lg-4 {
+            padding-left: 0 !important;
+        }
+        div.row.p-3 {
+            padding-top: 5px !important;
+            display: none !important;
+        }
+        div.it-header-center-wrapper {
+            height: 75px !important;
+            padding-top: 0 !important;
+        }
+        div.service-item {
+            margin-bottom: 0 !important;
+        }
+        div.service-card::after {
+            content: none !important;
+        }
+    </style>
+
+<div class="container">
+    <div class="row">
+        <!-- Filtros Lateral -->
+        <div class="col-md-3">
+            <div class="sidebar">
+                <h4 class="mb-4">Filtrar Serviços</h4>
+                <!-- Filtro de Universidades -->
+                <h5>Universidades</h5>
+                <div class="form-check">
+                    <input class="form-check-input university-filter" type="checkbox" value="IFRS - Câmpus Rolante" id="univB">
+                    <label class="form-check-label" for="univB">IFRS - Câmpus Rolante</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input university-filter" type="checkbox" value="UFMG" id="univC">
+                    <label class="form-check-label" for="univC">UFMG</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input university-filter" type="checkbox" value="UFRJ" id="univD">
+                    <label class="form-check-label" for="univD">UFRJ</label>
+                </div>
+                <!-- Filtro de Escopos -->
+                <h5 class="mt-4">Escopos</h5>
+                <div class="form-check">
+                    <input class="form-check-input scope-filter" type="checkbox" value="Biblioteca" id="scopeLibrary">
+                    <label class="form-check-label" for="scopeLibrary">Biblioteca</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input scope-filter" type="checkbox" value="Pesquisa" id="scopeResearch">
+                    <label class="form-check-label" for="scopeResearch">Pesquisa</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input scope-filter" type="checkbox" value="E-Learning" id="scopeELearning">
+                    <label class="form-check-label" for="scopeELearning">E-Learning</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Serviços -->
+        <div class="col-md-9">
+            <h1 class="mb-4 text-center">Serviços Disponíveis na Federação</h1>
+            <p class="text-center">Como estudante da <strong>UFSC</strong>, você tem acesso aos seguintes serviços:</p>
+            <div class="row" id="services-container">
+                <!-- Serviço 1 -->
+                <div class="col-md-4 mb-3 service-item" data-university="IFRS - Câmpus Rolante" data-scope="Biblioteca">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Acesso à Biblioteca</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">IFRS - Câmpus Rolante</h6>
+                            <p class="card-text">Acesso a recursos digitais e físicos da biblioteca da IFRS - Câmpus Rolante.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Serviço 2 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFMG" data-scope="Pesquisa">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Base de Dados de Pesquisa</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFMG</h6>
+                            <p class="card-text">Acesso completo às bases de dados acadêmicas da UFMG.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Serviço 3 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFRJ" data-scope="E-Learning">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Plataforma de E-Learning</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFRJ</h6>
+                            <p class="card-text">Utilize ferramentas e materiais de E-Learning da UFRJ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 4 -->
+                <div class="col-md-4 mb-3 service-item" data-university="IFRS - Câmpus Rolante" data-scope="E-Learning">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Curso Online de Ciência de Dados</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">IFRS - Câmpus Rolante</h6>
+                            <p class="card-text">Aprenda fundamentos de ciência de dados com cursos interativos da IFRS - Câmpus Rolante.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 5 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFMG" data-scope="Biblioteca">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Portal de Livros Digitais</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFMG</h6>
+                            <p class="card-text">Acesse milhares de livros digitais disponíveis no acervo da UFMG.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 6 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFRJ" data-scope="Pesquisa">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Laboratórios Virtuais</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFRJ</h6>
+                            <p class="card-text">Utilize laboratórios virtuais para experimentos de ponta oferecidos pela UFRJ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 7 -->
+                <div class="col-md-4 mb-3 service-item" data-university="IFRS - Câmpus Rolante" data-scope="Pesquisa">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Repositório de Artigos Científicos</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">IFRS - Câmpus Rolante</h6>
+                            <p class="card-text">Acesse uma ampla base de artigos acadêmicos publicados pela IFRS - Câmpus Rolante.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 8 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFMG" data-scope="E-Learning">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Plataforma de Treinamento em TI</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFMG</h6>
+                            <p class="card-text">Treine suas habilidades em TI com cursos da UFMG.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serviço 9 -->
+                <div class="col-md-4 mb-3 service-item" data-university="UFRJ" data-scope="Biblioteca">
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Catálogo de Obras Históricas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">UFRJ</h6>
+                            <p class="card-text">Explore o acervo histórico da UFRJ com obras raras e valiosas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensagem de Sem Resultados -->
+            <div class="no-results" id="no-results">
+                Nenhum serviço corresponde aos filtros selecionados.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const universityFilters = document.querySelectorAll('.university-filter');
+    const scopeFilters = document.querySelectorAll('.scope-filter');
+    const services = document.querySelectorAll('.service-item');
+    const noResults = document.getElementById('no-results');
+
+    function filterServices() {
+        const selectedUniversities = Array.from(universityFilters)
+            .filter(input => input.checked)
+            .map(input => input.value);
+
+        const selectedScopes = Array.from(scopeFilters)
+            .filter(input => input.checked)
+            .map(input => input.value);
+
+        let anyVisible = false;
+
+        services.forEach(service => {
+            const matchesUniversity = 
+                selectedUniversities.length === 0 || selectedUniversities.includes(service.dataset.university);
+            const matchesScope = 
+                selectedScopes.length === 0 || selectedScopes.includes(service.dataset.scope);
+
+            if (matchesUniversity && matchesScope) {
+                service.style.display = '';
+                anyVisible = true;
+            } else {
+                service.style.display = 'none';
+            }
+        });
+
+        noResults.style.display = anyVisible ? 'none' : 'block';
+    }
+
+    universityFilters.forEach(input => input.addEventListener('change', filterServices));
+    scopeFilters.forEach(input => input.addEventListener('change', filterServices));
+    </script>
 
     <div class="row mt-3">
         <div class="col">
@@ -131,5 +381,25 @@
 </div>
 <script src="{% static 'js/spid-sp-access-button.js' %}"></script>
 <script src="{% static 'js/spid_button.js' %}"></script>
+<script>
+    // Filtering functionality
+    document.getElementById('search-bar').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const services = document.querySelectorAll('.service-item');
+        let anyVisible = false;
+
+        services.forEach(service => {
+            const serviceName = service.getAttribute('data-name').toLowerCase();
+            if (serviceName.includes(filter)) {
+                service.style.display = '';
+                anyVisible = true;
+            } else {
+                service.style.display = 'none';
+            }
+        });
+
+        document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+    });
+</script>
 
 {% endblock %}

@@ -29,7 +29,7 @@
     "sub": "http://127.0.0.1:8001",
     "default_exp": 33,
     "default_signature_alg": "RS256",
-    "authority_hints": [],
+    "authority_hints": ["http://ufrgs-ta.org:8005"],
     "jwks_fed": [
       {
         "kty": "RSA",
@@ -64,7 +64,12 @@
         "kid": "dlDtBxB1sKzY5hZTxJRLpvKVLeWHy5QYsFTSxETF5qM"
       }
     ],
-    "trust_marks": [],
+    "trust_marks": [
+      {
+        "id": "https://www.spid.gov.it/openid-federation/agreement/sp-public", 
+        "trust_mark": "eyJ0eXAiOiJ0cnVzdC1tYXJrK2p3dCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiY0tBcW1MeDlDd0tUUWRqQWt3VXlLTXQ3VFRtajdBaExuTlZBZjRpcUdydyJ9.eyJpc3MiOiJodHRwOi8vdWZyZ3MtdGEub3JnOjgwMDUiLCJzdWIiOiJodHRwOi8vdWZyZ3Mtc3Aub3JnOjgwMDYiLCJpYXQiOjE3MzE4Njc4NTcsImlkIjoiaHR0cHM6Ly93d3cuc3BpZC5nb3YuaXQvY2VydGlmaWNhdGlvbi9ycCIsIm1hcmsiOiJodHRwczovL3d3dy5hZ2lkLmdvdi5pdC90aGVtZXMvY3VzdG9tL2FnaWQvbG9nby5zdmciLCJyZWYiOiJodHRwczovL2RvY3MuaXRhbGlhLml0L2l0YWxpYS9zcGlkL3NwaWQtcmVnb2xlLXRlY25pY2hlLW9pZGMvaXQvc3RhYmlsZS9pbmRleC5odG1sIn0.fBa1dFrHiIFUI_s5JS0ZgaaedlPMMa5FqwOhnFQxyYwRq9YA3vapTGso_tQARVCGI4zwL-VTFMBzGOw5TINVFJ93Zgqe4ikiHw6nwa5390rY_d9LH76h22r8gT85ZT061bIFLNQ53B2SwXgdlWnZ94tAmZMlEph6K599MjsN8-rA_d53tycUK_r4ZwcMIiKNu7FqxoK59Dcc2TH0OppwPBnRfvOPkEdplUDZJHQwaCZNVURkgnJ0qylboyLC"
+      }
+    ],
     "trust_mark_issuers": {},
     "entity_type": "openid_relying_party",
     "metadata": {

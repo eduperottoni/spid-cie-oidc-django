@@ -5,7 +5,7 @@ import sys
 import logging
 
 from spid_cie_oidc import __version__
-
+from .settingsfed import *
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.CRITICAL)
@@ -25,33 +25,6 @@ DEBUG = True
 ADMIN_PATH = 'admin/'
 APPEND_SLASH = False
 
-# required for onboarding checks and also for all the leafs
-OIDCFED_DEFAULT_TRUST_ANCHOR = "http://127.0.0.1:8000"
-
-OIDCFED_TRUST_ANCHORS = [OIDCFED_DEFAULT_TRUST_ANCHOR]
-
-OIDCFED_PROVIDER_PROFILE = "spid"
-OIDCFED_PROVIDER_MAX_REFRESH = 10 #used in SPID
-
-# OIDCFED_PROVIDER_MAX_CONSENT_TIMEFRAME = 3600 #used in CIE (seconds)
-
-# for RP only
-OIDCFED_IDENTITY_PROVIDERS = {
-  "spid": {
-    "http://127.0.0.1:8000/oidc/op" : OIDCFED_DEFAULT_TRUST_ANCHOR,
-  },
-  "cie": {
-    "http://127.0.0.1:8002/oidc/op" : OIDCFED_DEFAULT_TRUST_ANCHOR,
-  }
-}
-
-OIDCFED_REQUIRED_TRUST_MARKS = []
-
-OIDCFED_FEDERATION_TRUST_MARKS_PROFILES = {
-    "openid_relying_party__public": {},
-    "openid_relying_party__private": {},
-}
-
 HTTPC_PARAMS = {
     "connection": {"ssl": True},
     "session": {"timeout": aiohttp.ClientTimeout(total=4)},
@@ -60,55 +33,6 @@ HTTPC_PARAMS = {
 LOGIN_REDIRECT_URL = "/oidc/rp/echo_attributes"
 LOGOUT_REDIRECT_URL = "/oidc/rp/landing"
 LOGIN_URL = "/oidc/rp/landing"
-
-
-FEDERATION_DEFAULT_POLICY = {
-    "openid_relying_party": {
-      # TODO: to be customized for each entities, not somethinf to default!
-      # "client_id": {"value":  "https://rp.example.it/spid"},
-      # "redirect_uris": {
-        # "subset_of": [
-          # "https://rp.example.it/spid/cb1", 
-          # "https://rp.example.it/spid/cb2"
-        # ]
-      # },
-      # "organization_name": {"value": "Example RP organization name"},
-      # "logo_uri": {
-         # "one_of": [
-            # "https://rp.example.it/logo_small.jpg",
-            # "https://rp.example.it/logo_big.jpg"
-         # ],
-         # "default": "https://rp.example.it/logo_small.jpg"
-      # },
-       # "policy_uri": {
-         # "value": "https://rp.example.it/policy.html"
-       # },
-       # "tos_uri": {
-         # "value": "https://rp.example.it/tos.html"
-      # },
-      "grant_types": {
-        "subset_of": [
-          "authorization_code",
-          "refresh_token"
-         ]
-      },
-    # TODO: to be customized for each actor
-    "constraints": {
-      # "naming_constraints": {
-        # "permitted": [
-          # "https://rp.example.it"
-      # ]
-    # },
-
-    # defines how many intermediaries are allowed to this trust anchor
-    "max_path_length": 1
-  },
-  },
-  # TODO: TBD
-  "openid_provider": {},
-  "federation_entity": {},
-  "oauth_resource": {}
-}
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'spid_cie_oidc_accounts.User'
@@ -178,6 +102,8 @@ DJAGGER_DOCUMENT = {
     ]
 }
 
+
+# TODO : Usar um PostgreSQL aqui
 DATABASES = {
     # if you need more power
     # 'default': {
@@ -259,12 +185,12 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'mail_admins'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': False,
         },
         'spid_cie_oidc': {
             'handlers': ['console', 'mail_admins', "daily"],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': False,
         }
     }

@@ -143,7 +143,7 @@ Example
 
 ## OIDC Federation CLI
 
-`fetch_openid_providers` build the Trust Chains for each `OIDCFED_IDENTITY_PROVIDERS`. Flag '-f' force trust chian renew even if is still valid.
+`fetch_openid_providers` build the Trust Chains for each `OIDCFED_IDENTITY_PROVIDERS`. Flag '-f' force trust chain renew even if is still valid.
 ````
 examples/federation_authority/manage.py fetch_openid_providers --start -f
 
